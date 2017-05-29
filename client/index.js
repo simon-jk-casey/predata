@@ -1,9 +1,9 @@
-import React from 'React'
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 import App from './components/App'
 
-document.addEventListener('DCOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <App />, document.getElementById('app')
   )
