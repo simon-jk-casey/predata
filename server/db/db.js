@@ -1,81 +1,122 @@
+var env = process.env.NODE_ENV || 'development'
+
 const Knex = require('knex')
-const knexConfig = require('../../knexfile')
+const knexConfig = require('../../knexfile')[env]
 const knex = Knex(knexConfig)
 
 // USER TABLE
 
-export function addUser (user) {
+// REMOVE PASSWORD FROM USER DATA FUNCTIONS WHERE NOT NEEDED WHEN APPROPRIATE
+
+function addUser (user) {
   return knex('users').insert(user)
 }
 
-export function getUsers () {
+function getUsers () {
   return knex('users')
 }
 
-export function getUserByUsername (username) {
-  return knex('users').where('username', `${username}`)
+function getUserByEmail (email) {
+  return knex('users').where('email', `${email}`)
 }
 
-export function getUserById (id) {
+function getUserById (id) {
   return knex('users').where('id', `${id}`)
 }
 
-export function removeUser (id) {
+//add function to update user details
+
+function removeUser (id) {
   return knex('users').where('id', `${id}`).del()
 }
 
 // DEVICE TABLE
 
-export function addDevice (device) {
+function addDevice (device) {
   return knex('devices').insert(device)
 }
 
-export function getDevices () {
+function getDevices () {
   return knex('devices')
 }
 
-export function getUserDevices (userId) {
+function getDeviceById (id) {
+  return knex('devices').where('id', `${id}`)
+}
+
+// add function to update device details
+
+function getUserDevices (userId) {
   return knex('devices').where('userId', `${userId}`)
 }
 
-export function removeDevice (id) {
+function removeDevice (id) {
   return knex('devices').where('id', `${id}`).del()
 }
 
 // PREDATOR DATA TABLE
 
-export function addPredatorData (predatorData) {
+function addPredatorData (predatorData) {
   return knex('predatorData').insert(predatorData)
 }
 
-export function getUserCaptureData (userId) {
+function getCaptureData () {
   return knex('predatorData')
     .join('devices', 'predatorData.deviceId', 'devices.id')
     .select('captureDate')
     .select('predatorData.id as predatorId')
     .select('predCaptured')
-    .select('predatorData.notes as predatorNotes')
+    .select('predNotes')
     .select('deviceName')
     .select('deviceType')
-    .select('devices.notes as deviceNotes')
+    .select('deviceNotes')
+}
+
+function getUserCaptureData (userId) {
+  return knex('predatorData')
+    .join('devices', 'predatorData.deviceId', 'devices.id')
+    .select('captureDate')
+    .select('predatorData.id as predatorId')
+    .select('predCaptured')
+    .select('predNotes')
+    .select('deviceName')
+    .select('deviceType')
+    .select('deviceNotes')
     .where('predatorData.userId', `${userId}`)
 }
 
 // add functions later for search -- by suburb, date range, trap type
 
-export function getCaptureDataBySuburb (suburb) {
+function getCaptureDataBySuburb (suburb) {
   return knex('predatorData')
     .join('devices', 'predatorData.deviceId', 'devices.id')
     .join('users', 'predatorData.userId', 'users.id')
     .select('captureDate')
     .select('predatorData.id as predatorId')
     .select('predatorCaptured')
-    .select('predatorData.notes as predatorNotes')
+    .select('predNotes')
     .select('deviceName')
     .select('deviceType')
-    .select('devices.notes as deviceNotes')
+    .select('deviceNotes')
     .select('streetAddress')
     .select('suburb')
     .select('gpsCoords')
     .where('users.suburb', `${suburb}`)
+}
+
+module.exports = {
+  addUser,
+  getUsers,
+  getUserByEmail,
+  getUserById,
+  removeUser,
+  addDevice,
+  getDevices,
+  getDeviceById,
+  getUserDevices,
+  removeDevice,
+  addPredatorData,
+  getCaptureData,
+  getUserCaptureData,
+  getCaptureDataBySuburb
 }
