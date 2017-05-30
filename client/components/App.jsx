@@ -1,8 +1,14 @@
 import React from 'react'
 
+import Menu from './Menu'
+
 const App = () => {
   return (
-    <h1>React development has begun!</h1>
+    <div className='appHeader'>
+      <h1>preData</h1>
+      <h2>Data collection for community based predator eradication initiatives</h2>
+      <Menu />
+    </div>
   )
 }
 
