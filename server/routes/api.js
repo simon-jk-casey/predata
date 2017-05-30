@@ -28,9 +28,9 @@ router.post('/v1/auth', (req, res) => {
   })
 })
 
-router.get('/v1/user', (req, res) => {
-  // when auth present ... db.getUserById(req.user.userId)
-  db.getUserById(req.body.userId)
+router.get('/v1/user/:id', (req, res) => {
+  // when auth present ... db.getUserById(req.user.userId) - rem :id from url
+  db.getUserById(req.params.id)
   .then((data) => {
     res.json(data)
   })
@@ -76,19 +76,21 @@ router.get('/v1/devices/:id', (req, res) => {
   })
 })
 
-router.put('v1/devices/:id', (req, res) => {
-  // edit/update device info
-})
+// router.put('v1/devices/:id', (req, res) => {
+//   // edit/update device info
+// })
 
-router.post('v1/devices/:id', (req, res) => {
-  db.removeDevice(req.params.id)
-  .then(() => {
-    res.sendStatus(204)
-  })
-  .catch((err) => {
-    throw err
-  })
-})
+
+// DELETE ROUTE DOESNT WORK / COULD BE CORRESPONDING FUNCTION
+// router.delete('v1/devices/:id', (req, res) => {
+//   db.removeDevice(req.params.id)
+//   .then(() => {
+//     res.sendStatus(204)
+//   })
+//   .catch((err) => {
+//     throw err
+//   })
+// })
 
 router.get('/v1/myDevices', (req, res) => {
   // when auth present db.getUserDevices(req.user.userId)
