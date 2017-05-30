@@ -5,7 +5,7 @@ exports.up = function (knex, Promise) {
     table.integer('userId').notNullable()
     table.string('deviceName').notNullable()
     table.string('deviceType').notNullable()
-    table.string('notes')
+    table.string('deviceNotes')
   })
 }
 

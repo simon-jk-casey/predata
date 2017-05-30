@@ -5,7 +5,7 @@ exports.up = function (knex, Promise) {
     table.integer('userId').notNullable()
     table.integer('deviceId').notNullable()
     table.string('predCaptured').notNullable()
-    table.string('notes')
+    table.string('predNotes')
     table.timestamp('captureDate').defaultTo(knex.fn.now())
   })
 }
