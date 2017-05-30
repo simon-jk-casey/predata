@@ -8,7 +8,7 @@ const Menu = () => {
       <button className='menuButton'>REGISTER</button>
       <button className='menuButton'>ABOUT</button>
       <button className='menuButton'>CONTACT</button>
-      <Link to='/test'>Test</Link>
+      <Link to='/test'><button className='menuButton'>TEST</button></Link>
     </div>
   )
 }
