@@ -1,11 +1,14 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 const Menu = () => {
   return (
     <div className='menuBar'>
       <button className='menuButton'>REGISTER</button>
       <button className='menuButton'>ABOUT</button>
       <button className='menuButton'>CONTACT</button>
+      <Link to='/test'><button className='menuButton'>TEST</button></Link>
     </div>
   )
 }

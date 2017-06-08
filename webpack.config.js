@@ -2,7 +2,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: __dirname + '/public',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [{
@@ -10,6 +11,9 @@ module.exports = {
       loader: 'babel-loader',
       exclude: /node_modules/
     }]
+  },
+  devServer: {
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['.js', '.jsx']
