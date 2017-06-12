@@ -5,6 +5,7 @@ import * as types from '../actions/actionTypes'
 import userReducer from './user'
 import predatorDataReducer from './predatorData'
 import deviceReducer from './devices'
+import { routerReducer } from 'react-router-redux'
 
 function universalReducer (state = {
   isAuthenticated: false,
@@ -23,10 +24,11 @@ function universalReducer (state = {
 }
 
 const rootReducer = combineReducers({
-  universalReducer,
-  userReducer,
-  predatorDataReducer,
-  deviceReducer
+  universal: universalReducer,
+  user: userReducer,
+  predator: predatorDataReducer,
+  devices: deviceReducer,
+  routing: routerReducer
 })
 
 export default rootReducer

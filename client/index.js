@@ -1,36 +1,31 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'redux'
-import { HashRouter as Router, Route } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
-import { init } from './actions/index'
-import configureStore from './configureStore'
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
+
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
 
 import App from './components/App'
-import Login from './components/Login'
-import Test from './components/Test'
+import rootReducer from './reducers/index'
 
-const customHistory = createBrowserHistory()
+const history = createHistory()
 
-const store = configureStore()
+const middleware = [routerMiddleware(history), thunk, logger]
 
-document.addEventListener('DOMContentLoaded', () => {
-  render(
-    <Router history={customHistory}>
-      <App>
-        <Route exact path='/' component={Login} />
-        <Route path='/test' component={Test} />
-      </App>
-    </Router>,
-    document.getElementById('app')
-  )
-})
+const store = createStore(rootReducer, applyMiddleware(...middleware))
 
-store.dispatch(init())
-
-// EXACT PATH RENDERS CORRECTLY -- /test ROUTE DOES NOT WORK
-
-// https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url/43212553
-
-// look at doing basic link/router in render above
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <App />
+      </div>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('app')
+)

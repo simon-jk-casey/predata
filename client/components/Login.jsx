@@ -1,6 +1,13 @@
 import React from 'react'
+import { push } from 'react-router-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log(this.props)
+  }
   render () {
     return (
       <div>
@@ -11,11 +18,15 @@ class Login extends React.Component {
           <input type='password' name='password' />
         </form>
         <div>
-          <button form='userAuth' type='submit'>Login</button>
+          <button onClick={() => this.props.changePage()}>Login</button>
         </div>
       </div>
     )
   }
 }
 
-export default Login
+const mapDispatchToProps = dispatch => bindActionCreators({
+  changePage: () => push('/test')
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(Login)
