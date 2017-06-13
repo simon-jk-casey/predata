@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import Menu from './Menu'
 import Login from './Login'
 import Test from './Test'
+import Registration from './Registration'
 
 // const App = ({ children }) => {
 //   return (
@@ -28,6 +29,7 @@ const App = () => {
       <main>
         <Route exact path='/' component={Login} />
         <Route exact path='/test' component={Test} />
+        <Route exact path='/register' component={Registration} />
       </main>
     </div>
   )

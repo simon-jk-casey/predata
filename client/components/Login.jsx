@@ -18,10 +18,8 @@ class Login extends React.Component {
           <label htmlFor='password'>Password: </label>
           <input type='password' name='password' onChange={(evt) => this.props.dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value))} />
         </form>
-        <div>
-          <button onClick={() => this.props.changePage()}>Login</button>
+          <button form='userAuth' onClick={() => this.props.changePage()}>Login</button>
         </div>
-      </div>
     )
   }
 }
