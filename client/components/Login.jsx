@@ -25,7 +25,7 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: () => push('/test')
+  changePage: () => push('/profile')
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(Login)

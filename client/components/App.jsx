@@ -5,6 +5,7 @@ import Menu from './Menu'
 import Login from './Login'
 import Test from './Test'
 import Registration from './Registration'
+import Profile from './Profile'
 
 // const App = ({ children }) => {
 //   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path='/' component={Login} />
         <Route exact path='/test' component={Test} />
         <Route exact path='/register' component={Registration} />
+        <Route exact path='/profile' component={Profile} />
       </main>
     </div>
   )

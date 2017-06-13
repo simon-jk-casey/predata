@@ -16,6 +16,15 @@ export default function (state = {
     gpsCoords: null,
     email: null,
     password: null
+  },
+  profileData: {
+    firstName: 'Test',
+    lastName: 'Ing',
+    streetAddress: '224 Mitchell St',
+    suburb: 'Brooklyn',
+    city: 'Wellington',
+    gpsCoords: '0, -1',
+    email: 'jesusiwasevil@gmail.com'
   }
 }, action) {
   const { type, payload } = action
@@ -32,7 +41,7 @@ export default function (state = {
       loginDetails[payload.field] = payload.value
       return newState
     case types.STORE_USER_DETAILS:
-      newState.userDetails = payload
+      newState.profileData = payload
       return newState
     default:
       return newState
