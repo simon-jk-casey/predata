@@ -2,7 +2,9 @@ import clone from 'clone'
 
 import * as types from '../actions/actionTypes'
 
-export default function (state = {}, action) {
+export default function (state = {
+  loginDetails: {email: '', password: ''}
+}, action) {
   const { type, payload } = action
   let newState = clone(state)
   switch (type) {
@@ -11,6 +13,7 @@ export default function (state = {}, action) {
       newUser[payload.field] = payload.value
       return newState
     case types.UPDATE_LOGIN_DETAILS:
+      console.log('firing')
       const loginDetails = newState.loginDetails
       loginDetails[payload.field] = payload.value
       console.log(loginDetails)
