@@ -7,17 +7,6 @@ import Test from './Test'
 import Registration from './Registration'
 import Profile from './Profile'
 
-// const App = ({ children }) => {
-//   return (
-//     <div className='appHeader'>
-//       <h1>preData</h1>
-//       <h2>Data collection for community based predator eradication initiatives</h2>
-//       <Menu />
-//       { children }
-//     </div>
-//   )
-// }
-
 const App = () => {
   return (
     <div>
@@ -26,7 +15,6 @@ const App = () => {
         <h2>Data collection for community based predator eradication initiatives</h2>
         <Menu />
       </header>
-
       <main>
         <Route exact path='/' component={Login} />
         <Route exact path='/test' component={Test} />

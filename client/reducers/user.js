@@ -3,20 +3,8 @@ import clone from 'clone'
 import * as types from '../actions/actionTypes'
 
 export default function (state = {
-  loginDetails: {
-    email: null,
-    password: null
-  },
-  newUser: {
-    firstName: null,
-    lastName: null,
-    streetAddress: null,
-    suburb: null,
-    city: null,
-    gpsCoords: null,
-    email: null,
-    password: null
-  },
+  loginDetails: {},
+  newUser: {},
   profileData: {
     firstName: 'Test',
     lastName: 'Ing',
@@ -31,7 +19,6 @@ export default function (state = {
   let newState = clone(state)
   switch (type) {
     case types.USER_REGISTRATION:
-      console.log('firing')
       const newUser = newState.newUser
       newUser[payload.field] = payload.value
       console.log(newUser)
@@ -39,6 +26,7 @@ export default function (state = {
     case types.UPDATE_LOGIN_DETAILS:
       const loginDetails = newState.loginDetails
       loginDetails[payload.field] = payload.value
+      console.log(loginDetails)
       return newState
     case types.STORE_USER_DETAILS:
       newState.profileData = payload
