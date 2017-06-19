@@ -36,7 +36,7 @@ class DeviceInput extends React.Component {
             <label htmlFor='devNotes'><p>Device Notes:</p></label>
           </div>
           <div>
-            <textarea id='devNotes' onChange={(evt) => inputChange(evt)} rows='6' cols='60' wrap='soft' maxLength='240' />
+            <textarea id='devNotes' name='deviceNotes' onChange={(evt) => inputChange(evt)} rows='6' cols='60' wrap='soft' maxLength='240' />
           </div>
         </form>
         <div>
