@@ -6,6 +6,7 @@ import Login from './Login'
 import Test from './Test'
 import Registration from './Registration'
 import Profile from './Profile'
+import PredatorInput from './PredatorInput'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path='/test' component={Test} />
         <Route exact path='/register' component={Registration} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/addPredator' component={PredatorInput} />
       </main>
     </div>
   )

@@ -14,8 +14,8 @@ class Login extends React.Component {
           <label htmlFor='password'>Password: </label>
           <input type='password' name='password' onChange={(evt) => this.props.inputChange(evt)} />
         </form>
-          <button form='userAuth' onClick={() => this.props.changePage()}>Login</button>
-        </div>
+        <button form='userAuth' onClick={() => this.props.changePage()}>Login</button>
+      </div>
     )
   }
 }
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: () => push('/profile'),
+  changePage: () => push('/addPredator'),
   inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value))
 }, dispatch)
 

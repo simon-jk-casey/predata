@@ -22,3 +22,7 @@ export function updateLoginDetails (field, value) {
 export function storeUserDetails (userData) {
   return {type: types.STORE_USER_DETAILS, payload: userData}
 }
+
+export function updatePredatorInput (field, value) {
+  return {type: types.UPDATE_PREDATOR_INPUT, payload: {field: field, value: value}}
+}
