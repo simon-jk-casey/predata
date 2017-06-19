@@ -1,28 +1,31 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { HashRouter as Router, Route } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
+
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
+
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
 
 import App from './components/App'
-import Login from './components/Login'
-import Test from './components/Test'
+import rootReducer from './reducers/index'
 
-const customHistory = createBrowserHistory()
+const history = createHistory()
 
-document.addEventListener('DOMContentLoaded', () => {
-  render(
-    <Router history={customHistory}>
-      <App>
-        <Route exact path='/' component={Login} />
-        <Route path='/test' component={Test} />
-      </App>
-    </Router>,
-    document.getElementById('app')
-  )
-})
+const middleware = [routerMiddleware(history), thunk, logger]
 
-// EXACT PATH RENDERS CORRECTLY -- /test ROUTE DOES NOT WORK
+const store = createStore(rootReducer, applyMiddleware(...middleware))
 
-// https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url/43212553
-
-// look at doing basic link/router in render above
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <App />
+      </div>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('app')
+)

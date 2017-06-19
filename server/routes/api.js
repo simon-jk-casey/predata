@@ -7,7 +7,7 @@ router.get('/v1', (req, res) => {
   res.json('API V1 ENDPOINT ACTIVE')
 })
 
-router.post('/v1/signup', (req, res) => {
+router.post('/v1/register', (req, res) => {
   db.addUser(req.body)
   .then(() => {
     res.sendStatus(201)
