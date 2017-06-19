@@ -34,7 +34,7 @@ class PredatorInput extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { newPredatorEntry: state.predator.newPredatorEntry }
+  return { newPredator: state.predator.newPredator }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

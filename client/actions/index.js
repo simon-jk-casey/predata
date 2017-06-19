@@ -26,3 +26,7 @@ export function storeUserDetails (userData) {
 export function updatePredatorInput (field, value) {
   return {type: types.UPDATE_PREDATOR_INPUT, payload: {field: field, value: value}}
 }
+
+export function updateDeviceInput (field, value) {
+  return {type: types.UPDATE_DEVICE_INPUT, payload: {field: field, value: value}}
+}

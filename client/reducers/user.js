@@ -35,3 +35,5 @@ export default function (state = {
       return newState
   }
 }
+
+// SEPERATE REGISTRATION AND USER REDUCERS WITH EXPORT FUNCTION - DO ON OTHERS SO CAN GO DRY ON FORM UPDATE REDUCER CALLS?
