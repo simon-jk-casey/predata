@@ -13,6 +13,14 @@ export default function (state = {
       newPredator[payload.field] = payload.value
       console.log('PE', newPredator)
       return newState
+    case types.TOGGLE_SELECTED:
+      const newPredator = newState.newPredator
+      if (!newPredator.isToggled || newPredator.isToggled == null) {
+        newPredator.isToggled = true
+      } else {
+        newState.isToggled = false
+      }
+      return newState
     default:
       return newState
   }
