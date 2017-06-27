@@ -30,3 +30,7 @@ export function updatePredatorInput (field, value) {
 export function updateDeviceInput (field, value) {
   return {type: types.UPDATE_DEVICE_INPUT, payload: {field: field, value: value}}
 }
+
+export function toggleSelected (element) {
+  return {type: types.TOGGLE_SELECTED, payload: element}
+}

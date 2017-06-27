@@ -3,7 +3,9 @@ import clone from 'clone'
 import * as types from '../actions/actionTypes'
 
 export default function (state = {
-  newPredator: {}
+  newPredator: {},
+  predatorToggled: {},
+  selector: {}
 }, action) {
   const { type, payload } = action
   let newState = clone(state)
@@ -14,12 +16,13 @@ export default function (state = {
       console.log('PE', newPredator)
       return newState
     case types.TOGGLE_SELECTED:
-      const newPredator = newState.newPredator
-      if (!newPredator.isToggled || newPredator.isToggled == null) {
-        newPredator.isToggled = true
+      const selector = newState.selector
+      if (!selector.isToggled || selector.isToggled == null) {
+        selector.isToggled = true
       } else {
-        newState.isToggled = false
+        selector.isToggled = false
       }
+      selector.predatorSelected = payload
       return newState
     default:
       return newState
