@@ -5,7 +5,36 @@ import * as types from '../actions/actionTypes'
 export default function (state = {
   newPredator: {},
   predatorToggled: {},
-  selector: {}
+  selector: {},
+  history: [
+    {
+      captureId: 1,
+      captureDate: '27th Aug 2017',
+      predCaptured: 'Mouse',
+      predNotes: 'Hairy',
+      deviceName: 'Trappy McTrapface',
+      deviceType: 'Kill Trap',
+      deviceNotes: 'By the long drop'
+    },
+    {
+      captureId: 2,
+      captureDate: '29th Aug 2017',
+      predCaptured: 'Ferret',
+      predNotes: 'Bitey',
+      deviceName: 'Trappy McTrapface',
+      deviceType: 'Kill Trap',
+      deviceNotes: 'By the long drop'
+    },
+    {
+      captureId: 3,
+      captureDate: '31st Aug 2017',
+      predCaptured: 'Feral Cat',
+      predNotes: 'Someones pet?',
+      deviceName: 'Trappy McTrapface',
+      deviceType: 'Kill Trap',
+      deviceNotes: 'By the long drop'
+    }
+  ]
 }, action) {
   const { type, payload } = action
   let newState = clone(state)
