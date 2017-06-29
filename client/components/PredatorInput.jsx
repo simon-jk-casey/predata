@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions/index'
 
+import PredatorSelector from './PredatorSelector'
+
 class PredatorInput extends React.Component {
   render () {
     const { inputChange, changePage } = this.props
@@ -17,9 +19,7 @@ class PredatorInput extends React.Component {
             </select>
           </div>
           <div className='errorField'><p id='errorMsg'></p></div>
-          <div className='predatorSelector'>
-            {/* predator selector goes here */}
-          </div>
+          <PredatorSelector />
           <div>
             <textarea className='predNotes' onChange={(evt) => inputChange(evt)} name='Notes' rows='6' cols='60' wrap='soft' maxLength='240' />
           </div>

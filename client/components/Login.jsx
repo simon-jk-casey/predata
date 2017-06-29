@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: () => push('/addDevice'),
+  changePage: () => push('/addPredator'),
   inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value))
 }, dispatch)
 

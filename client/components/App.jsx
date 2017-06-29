@@ -8,6 +8,7 @@ import Registration from './Registration'
 import Profile from './Profile'
 import PredatorInput from './PredatorInput'
 import DeviceInput from './DeviceInput'
+import PredatorSelector from './PredatorSelector'
 
 const App = () => {
   return (
