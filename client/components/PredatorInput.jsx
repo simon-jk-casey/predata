@@ -19,9 +19,7 @@ class PredatorInput extends React.Component {
             </select>
           </div>
           <div className='errorField'><p id='errorMsg'></p></div>
-          <div className='predatorSelector'>
-            <PredatorSelector />
-          </div>
+          <PredatorSelector />
           <div>
             <textarea className='predNotes' onChange={(evt) => inputChange(evt)} name='Notes' rows='6' cols='60' wrap='soft' maxLength='240' />
           </div>

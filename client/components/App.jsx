@@ -25,7 +25,6 @@ const App = () => {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/addPredator' component={PredatorInput} />
         <Route exact path='/addDevice' component={DeviceInput} />
-        <Route exact path='/addPredator' component={PredatorInput}/>
       </main>
     </div>
   )
