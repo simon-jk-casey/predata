@@ -7,7 +7,6 @@ import * as actions from '../actions/index'
 class PredatorSelector extends React.Component {
   constructor (props) {
     super(props)
-    console.log('props yo!', this.props)
     this.predators = [
       {name: 'Norway Rat', imgsrc: '../../img/norwayRat.jpg'},
       {name: 'Ship Rat', imgsrc: '../../img/shipRat.jpg'},

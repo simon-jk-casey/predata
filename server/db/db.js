@@ -64,7 +64,7 @@ function getCaptureData () {
   return knex('predatorData')
     .join('devices', 'predatorData.deviceId', 'devices.id')
     .select('captureDate')
-    .select('predatorData.id as predatorId')
+    .select('predatorData.id as captureId')
     .select('predCaptured')
     .select('predNotes')
     .select('deviceName')

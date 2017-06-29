@@ -10,7 +10,7 @@ const Menu = () => {
       </Link>
       <button className='menuButton'>ABOUT</button>
       <button className='menuButton'>CONTACT</button>
-      <Link to='/addPredator'>
+      <Link to='/history'>
         <button className='menuButton'>TEST</button>
       </Link>
     </div>
