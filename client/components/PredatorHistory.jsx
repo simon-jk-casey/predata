@@ -44,6 +44,9 @@ class PredatorHistory extends React.Component {
             <div><p>Device Type: {deviceType}</p></div>
             <div><p>Device Name: {deviceName}</p></div>
           </div>
+          <div>
+            <div><p>Notes: {predNotes}</p></div>
+          </div>
         </div>
       </div>
     )
