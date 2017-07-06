@@ -18,7 +18,7 @@ export default function (state = {
       return newState
     case types.TOGGLE_SELECTED:
       const selector = newState.selector
-      if (!selector.isToggled || selector.isToggled == null) {
+      if (!selector.isToggled || selector.isToggled === null) {
         selector.isToggled = true
       } else {
         selector.isToggled = false
