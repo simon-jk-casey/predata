@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  inputChange: (evt) => dispatch(actions.updatePredatorInput('predatorSelected', evt.target.parentElement.id)),
+  inputChange: (evt) => dispatch(actions.updatePredatorInput('capturedPredator', evt.target.parentElement.id)),
   toggleSelected: (evt) => dispatch(actions.toggleSelected(evt.target.parentElement.id))
 }, dispatch)
 
