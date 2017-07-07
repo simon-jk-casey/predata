@@ -2,7 +2,7 @@ const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
-import db from './db/db'
+const db = require('./db/db');
 
 const userObjCreator = (user) => {
   return {
@@ -45,3 +45,5 @@ passport.deserializeUser((id, done) => {
     done(err)
   })
 })
+
+module.exports = passport

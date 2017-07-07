@@ -1,25 +1,19 @@
 import request from 'superagent'
 import * as actions from './actions/index'
 
-const baseUrl = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return 'https://predata.herokuapp.com/api/v1/'
-  } else {
-    return 'http://localhost:3000/api/v1/'
-  }
-}
+const baseUrl = 'http://localhost:3000/api/v1/'
 
 function errorHandler (err) {
   dispatch(actions.error(err))
 }
 
-export function registration (registrationData, dispatch) {
+export function registration (registrationData) {
   request
     .post(baseUrl + 'register')
     .send(registrationData)
     .end((err, res) => {
       if (err) {
-        errorHandler(err)
+        console.log(err)
       } else {
         console.log(res)
       }

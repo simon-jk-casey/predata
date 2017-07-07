@@ -2,14 +2,23 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
+import { registration } from '../api'
 import * as actions from '../actions/index'
 
 class Registration extends React.Component {
+
+  handleSumbit (evt) {
+    evt.preventDefault()
+    registration(this.props.newUser)
+    this.props.changePage()
+  }
+
   render () {
-    const { inputChange, changePage } = this.props
+    const { inputChange, handleSumbit } = this.props
     return (
       <div>
-        <form id='userRegistration'>
+        <form id='userRegistration' onSubmit={(evt) => this.handleSumbit(evt)}>
           <input onChange={(evt) => inputChange(evt)} type='text' name='firstName' placeholder='First Name' />
           <input onChange={(evt) => inputChange(evt)} type='text' name='lastName' placeholder='Last Name' />
           <input onChange={(evt) => inputChange(evt)} type='text' name='streetAddress' placeholder='Street Address' />
@@ -19,7 +28,7 @@ class Registration extends React.Component {
           <input onChange={(evt) => inputChange(evt)} type='email' name='email' placeholder='Email Address' />
           <input onChange={(evt) => inputChange(evt)} type='password' name='password' placeholder='Password' />
         </form>
-        <button form='userRegistration' onClick={() => changePage()}>REGISTER</button>
+        <button form='userRegistration' type='submit'>REGISTER</button>
         <button>CANCEL</button>
       </div>
     )

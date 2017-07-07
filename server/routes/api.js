@@ -20,6 +20,7 @@ router.get('/v1', (req, res) => {
 })
 
 router.post('/v1/register', (req, res) => {
+  console.log('hit')
   const {
     firstName,
     lastName,
