@@ -11,7 +11,6 @@ class Login extends React.Component {
   handleSumbit (evt) {
     evt.preventDefault()
     login(this.props.loginDetails)
-    this.props.changePage('/profile')
   }
 
   render () {

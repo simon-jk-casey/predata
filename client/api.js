@@ -1,11 +1,12 @@
 import request from 'superagent'
+
+import { push } from 'react-router-redux'
+
 import * as actions from './actions/index'
 
 const baseUrl = 'http://localhost:3000/api/v1/'
 
-function errorHandler (err) {
-  dispatch(actions.error(err))
-}
+// BUILD IN ERROR HANDLING
 
 export function registration (registrationData) {
   request
@@ -20,15 +21,17 @@ export function registration (registrationData) {
     })
 }
 
-export function login (loginData, dispatch) {
+export function login (loginData) {
+  console.log(loginData)
   request
     .post(baseUrl + 'auth')
     .send(loginData)
+    .withCredentials()
     .end((err, res) => {
       if (err) {
-        errorHandler(err)
+        console.log(err)
       } else {
-        console.log(res)
+        console.log('yep')
       }
     })
 }

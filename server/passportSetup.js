@@ -11,8 +11,13 @@ const userObjCreator = (user) => {
   }
 }
 
-passport.use(new Strategy((email, password, done) => {
-  db.getUserByEmail(email)
+passport.use(new Strategy(
+  {
+    usernameField: 'email',
+    password: 'password'
+  },
+  (username, password, done) => {
+  db.getUserByEmail(username)
   .then((user) => {
     if (user.length === 0) {
       done (null, false, {status: 401, message: 'User not found'})
