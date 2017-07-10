@@ -41,7 +41,7 @@ export function getUser (callback) {
     .get(baseUrl + 'user')
     .end((err, res) => {
       if (err) {
-        errorHandler(err)
+        console.log(err)
       } else {
         callback(null, res.body)
       }

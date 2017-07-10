@@ -7,6 +7,19 @@ import { registration } from '../api'
 import * as actions from '../actions/index'
 
 class Registration extends React.Component {
+  constructor (props) {
+    super(props)
+    this.fieldPropsArr = [
+      {name: 'firstName', placeholder: 'First Name', type: 'text'},
+      {name: 'lastName', placeholder: 'Last Name', type: 'text'},
+      {name: 'streetAddress', placeholder: 'Street Address', type: 'text'},
+      {name: 'suburb', placeholder: 'Suburb', type: 'text'},
+      {name: 'city', placeholder: 'City', type: 'text'},
+      {name: 'gpsCoords', placeholder: 'GPS Coordinates', type: 'text'},
+      {name: 'email', placeholder: 'Email Address', type: 'email'},
+      {name: 'password', placeholder: 'Password', type: 'password'}
+    ]
+  }
 
   handleSumbit (evt) {
     evt.preventDefault()
@@ -14,19 +27,20 @@ class Registration extends React.Component {
     this.props.changePage()
   }
 
+  regFormField (fieldProps, props) {
+    const { inputChange } = props
+    const { name, placeholder, type } = fieldProps
+    return (
+      <input key={name} onChange={(evt) => inputChange(evt)} type={type} name={name} placeholder={placeholder} />
+    )
+  }
+
   render () {
-    const { inputChange, handleSumbit } = this.props
+    const { regFormField, fieldPropsArr, props } = this
     return (
       <div>
         <form id='userRegistration' onSubmit={(evt) => this.handleSumbit(evt)}>
-          <input onChange={(evt) => inputChange(evt)} type='text' name='firstName' placeholder='First Name' />
-          <input onChange={(evt) => inputChange(evt)} type='text' name='lastName' placeholder='Last Name' />
-          <input onChange={(evt) => inputChange(evt)} type='text' name='streetAddress' placeholder='Street Address' />
-          <input onChange={(evt) => inputChange(evt)} type='text' name='suburb' placeholder='Suburb' />
-          <input onChange={(evt) => inputChange(evt)} type='text' name='city' placeholder='City' />
-          <input onChange={(evt) => inputChange(evt)} type='text' name='gpsCoords' placeholder='GPS Coordinates' />
-          <input onChange={(evt) => inputChange(evt)} type='email' name='email' placeholder='Email Address' />
-          <input onChange={(evt) => inputChange(evt)} type='password' name='password' placeholder='Password' />
+          {fieldPropsArr.map(fieldProps => regFormField(fieldProps, props))}
         </form>
         <button form='userRegistration' type='submit'>REGISTER</button>
         <button>CANCEL</button>

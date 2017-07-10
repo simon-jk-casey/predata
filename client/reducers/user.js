@@ -5,15 +5,7 @@ import * as types from '../actions/actionTypes'
 export default function (state = {
   loginDetails: {},
   newUser: {},
-  profileData: {
-    // firstName: 'Test',
-    // lastName: 'Ing',
-    // streetAddress: '224 Mitchell St',
-    // suburb: 'Brooklyn',
-    // city: 'Wellington',
-    // gpsCoords: '0, -1',
-    // email: 'jesusiwasevil@gmail.com'
-  }
+  profileData: {}
 }, action) {
   const { type, payload } = action
   let newState = clone(state)
