@@ -3,9 +3,6 @@ import clone from 'clone'
 import * as types from '../actions/actionTypes'
 
 export default function (state = {
-  isFetching: false,
-  isAuthenticating: false,
-  isAuthenticated: false,
   loginDetails: {},
   newUser: {},
   profileData: {}
@@ -25,13 +22,6 @@ export default function (state = {
       return newState
     case types.STORE_USER_DETAILS:
       newState.profileData = payload
-      return newState
-    case types.TOGGLE_FETCHING:
-      if (!newState.isFetching) {
-        newState.isFetching = true
-      } else {
-        newState.isFetching = false
-      }
       return newState
     default:
       return newState

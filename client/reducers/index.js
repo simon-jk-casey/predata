@@ -8,7 +8,8 @@ import deviceReducer from './devices'
 import { routerReducer } from 'react-router-redux'
 
 function universalReducer (state = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  isFetching: false
 }, action) {
   let newState = clone(state)
   switch (action.type) {
@@ -22,6 +23,13 @@ function universalReducer (state = {
         newState.isAuthenticated = true
       } else {
         newState.isAuthenticated = false
+      }
+      return newState
+    case types.TOGGLE_FETCHING:
+      if (!newState.isFetching) {
+        newState.isFetching = true
+      } else {
+        newState.isFetching = false
       }
       return newState
     default:
