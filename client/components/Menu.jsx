@@ -1,43 +1,70 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const Menu = () => {
-  return (
-    <div className='menuBar'>
-      <Link to='/register'>
-        <button className='menuButton'>REGISTER</button>
-      </Link>
-      <button className='menuButton'>ABOUT</button>
-      <button className='menuButton'>CONTACT</button>
-      <Link to='/history'>
-        <button className='menuButton'>TEST</button>
-      </Link>
-    </div>
-  )
+class Menu extends React.Component {
+  constructor (props) {
+    super(props)
+    console.log(props)
+  }
+
+  unauthMenu () {
+    return (
+      <div className='menuBar'>
+        <Link to='/register'>
+          <button className='menuButton'>REGISTER</button>
+        </Link>
+        <button className='menuButton'>ABOUT</button>
+        <button className='menuButton'>CONTACT</button>
+        <Link to='/history'>
+          <button className='menuButton'>TEST</button>
+        </Link>
+      </div>
+    )
+  }
+
+  authMenu () {
+    return (
+      <div className='menuBar'>
+        <Link to='/profile'>
+          <button className='menuButton'>Profile</button>
+        </Link>
+        <Link to='/addDevice'>
+          <button className='menuButton'>My Devices</button>
+        </Link>
+        <Link to='/addPredator'>
+          <button className='menuButton'>Capture Entry</button>
+        </Link>
+        <Link to='/history'>
+          <button className='menuButton'>Capture History</button>
+        </Link>
+        <Link to='/test'>
+          <button className='menuButton'>Data Views</button>
+        </Link>
+        <Link to='/'>
+          <button className='menuButton'>Log Out</button>
+        </Link>
+      </div>
+    )
+  }
+
+  menuPicker () {
+    if (!this.props.isAuthenticated) {
+      return this.unauthMenu()
+    } else {
+      return this.authMenu()
+    }
+  }
+
+  render () {
+    return (
+      this.menuPicker()
+    )
+  }
 }
 
-export default Menu
+const mapStateToProps = (state) => {
+  return { isAuthenticated: state.global.isAuthenticated }
+}
 
-// when redux added:
-
-// if (state.isAuthenticated) {
-//   return (
-//     <div className='menuBar'>
-//       <button className='menuButton'>PROFILE</button>
-//       <button className='menuButton'>DEVICES</button>
-//       <button className='menuButton'>DATA ENTRY</button>
-//       <button className='menuButton'>HISTORY</button>
-//       <button className='menuButton'>DATA VIEWS</button>
-//       <button className='menuButton'>LOG OUT</button>
-//     </div>
-//   )
-// } else {
-//   return (
-//     <div className='menuBar'>
-//       <button className='menuButton'>REGISTER</button>
-//       <button className='menuButton'>ABOUT</button>
-//       <button className='menuButton'>CONTACT</button>
-//     </div>
-//   )
-// }
+export default connect(mapStateToProps)(Menu)

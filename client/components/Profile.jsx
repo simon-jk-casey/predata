@@ -2,7 +2,6 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import * as actions from '../actions/index'
 
 class Profile extends React.Component {
@@ -12,7 +11,7 @@ class Profile extends React.Component {
     console.log('props', props)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.dispatch(actions.getUserDetails())
   }
 
