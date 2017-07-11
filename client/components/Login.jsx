@@ -2,6 +2,7 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import request from 'superagent'
 
 import { login } from '../api'
 import * as actions from '../actions/index'
@@ -10,8 +11,15 @@ class Login extends React.Component {
 
   handleSumbit (evt) {
     evt.preventDefault()
-    login(this.props.loginDetails)
-    this.props.changePage('/profile')
+    request
+      .post('http://localhost:3000/api/v1/auth')
+      .send(this.props.loginDetails)
+      .withCredentials()
+      .end((err, res) => {
+        if (err) console.log(err)
+        this.props.toggleAuthenticated()
+        this.props.changePage('/profile')
+      })
   }
 
   render () {
@@ -35,7 +43,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   changePage: (route) => push(route),
-  inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value))
+  inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value)),
+  toggleAuthenticated: () => actions.toggleAuthenticated(),
+
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

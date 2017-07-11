@@ -21,19 +21,20 @@ export function registration (registrationData) {
     })
 }
 
-export function login (loginData, dispatch) {
-  request
-    .post(baseUrl + 'auth')
-    .send(loginData)
-    .withCredentials()
-    .end((err, res) => {
-      if (res.status === 200) {
-        actions.toggleAuthenticated()
-      } else {
-        console.log(err)
-      }
-    })
-}
+// using in component
+// export function login (loginData) {
+//   request
+//     .post(baseUrl + 'auth')
+//     .send(loginData)
+//     .withCredentials()
+//     .end((err, res) => {
+//       if (res.status === 200) {
+//         actions.toggleAuthenticated()
+//       } else {
+//         console.log(err)
+//       }
+//     })
+// }
 
 export function getUser (callback) {
   request
