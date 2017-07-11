@@ -23,20 +23,6 @@ export default function (state = {
       loginDetails[payload.field] = payload.value
       console.log(loginDetails)
       return newState
-    case types.TOGGLE_AUTHENTICATING:
-      if (!newState.isAuthenticating) {
-        newState.isAuthenticating = true
-      } else {
-        newState.isAuthenticating = false
-      }
-      return newState
-    case types.TOGGLE_AUTHENTICATED:
-      if (!newState.isAuthenticated) {
-        newState.isAuthenticated = true
-      } else {
-        newState.isAuthenticated = false
-      }
-      return newState
     case types.STORE_USER_DETAILS:
       newState.profileData = payload
       return newState

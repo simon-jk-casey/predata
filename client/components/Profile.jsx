@@ -49,10 +49,6 @@ class Profile extends React.Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => bindActionCreators({
-//   getUserDetails: () => dispatch(actions.getUserDetails())
-// }, dispatch)
-
 const mapStateToProps = (state) => {
   return { profileData: state.user.profileData }
 }

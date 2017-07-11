@@ -16,9 +16,12 @@ class Login extends React.Component {
       .send(this.props.loginDetails)
       .withCredentials()
       .end((err, res) => {
-        if (err) console.log(err)
-        this.props.toggleAuthenticated()
-        this.props.changePage('/profile')
+        if (err) {
+          console.log(err)
+        } else {
+          this.props.toggleAuthenticated()
+          this.props.changePage('/profile')
+        }
       })
   }
 
@@ -38,7 +41,9 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { loginDetails: state.user.loginDetails }
+  return {
+    loginDetails: state.user.loginDetails
+  }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
