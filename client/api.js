@@ -21,17 +21,16 @@ export function registration (registrationData) {
     })
 }
 
-export function login (loginData) {
-  console.log(loginData)
+export function login (loginData, dispatch) {
   request
     .post(baseUrl + 'auth')
     .send(loginData)
     .withCredentials()
     .end((err, res) => {
-      if (err) {
-        console.log(err)
+      if (res.status === 200) {
+        actions.toggleAuthenticated()
       } else {
-        console.log('yep')
+        console.log(err)
       }
     })
 }
@@ -43,7 +42,7 @@ export function getUser (callback) {
       if (err) {
         console.log(err)
       } else {
-        callback(null, res.body)
+        actions.storeUserDetails(res.body)
       }
     })
 }

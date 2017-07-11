@@ -3,6 +3,9 @@ import clone from 'clone'
 import * as types from '../actions/actionTypes'
 
 export default function (state = {
+  isFetching: false,
+  isAuthenticating: false,
+  isAuthenticated: false,
   loginDetails: {},
   newUser: {},
   profileData: {}
@@ -20,8 +23,29 @@ export default function (state = {
       loginDetails[payload.field] = payload.value
       console.log(loginDetails)
       return newState
+    case types.TOGGLE_AUTHENTICATING:
+      if (!newState.isAuthenticating) {
+        newState.isAuthenticating = true
+      } else {
+        newState.isAuthenticating = false
+      }
+      return newState
+    case types.TOGGLE_AUTHENTICATED:
+      if (!newState.isAuthenticated) {
+        newState.isAuthenticated = true
+      } else {
+        newState.isAuthenticated = false
+      }
+      return newState
     case types.STORE_USER_DETAILS:
       newState.profileData = payload
+      return newState
+    case types.TOGGLE_FETCHING:
+      if (!newState.isFetching) {
+        newState.isFetching = true
+      } else {
+        newState.isFetching = false
+      }
       return newState
     default:
       return newState

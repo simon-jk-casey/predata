@@ -7,10 +7,7 @@ import predatorDataReducer from './predatorData'
 import deviceReducer from './devices'
 import { routerReducer } from 'react-router-redux'
 
-function universalReducer (state = {
-  isAuthenticated: false,
-  isFetching: false
-}, action) {
+function universalReducer (state = {}, action) {
   let newState = clone(state)
   switch (action.type) {
     case types.INIT:

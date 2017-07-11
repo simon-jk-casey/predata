@@ -2,13 +2,20 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import * as actions from '../actions/index'
 
 class Profile extends React.Component {
   constructor (props) {
     super(props)
     console.log('Profile!', this.props.profileData)
+    console.log('props', props)
   }
+
+  componentWillMount () {
+    this.props.dispatch(actions.getUserDetails())
+  }
+
   render () {
     const { firstName, lastName, streetAddress, suburb, city, gpsCoords, email } = this.props.profileData
     return (
@@ -41,6 +48,11 @@ class Profile extends React.Component {
     )
   }
 }
+
+// const mapDispatchToProps = (dispatch) => bindActionCreators({
+//   getUserDetails: () => dispatch(actions.getUserDetails())
+// }, dispatch)
+
 const mapStateToProps = (state) => {
   return { profileData: state.user.profileData }
 }

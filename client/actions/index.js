@@ -1,4 +1,10 @@
 import * as types from './actionTypes'
+import request from 'superagent'
+import { push } from 'react-router-redux'
+import { browserHistory } from 'react-router'
+
+const baseUrl = 'http://localhost:3000/api/v1/'
+
 
 // USER actions
 
@@ -33,4 +39,38 @@ export function updateDeviceInput (field, value) {
 
 export function toggleSelected (element) {
   return {type: types.TOGGLE_SELECTED, payload: element}
+}
+
+export function toggleFetching () {
+  return {type: types.TOGGLE_FETCHING}
+}
+
+export function toggleAuthenticating () {
+  return {type: types.TOGGLE_AUTHENTICATING}
+}
+
+export function toggleAuthenticated () {
+  return {type: types.TOGGLE_AUTHENTICATED}
+}
+
+export function getUserDetails () {
+  return (dispatch) => {
+    dispatch(toggleFetching())
+    request
+      .get(baseUrl + 'user')
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          dispatch(toggleFetching())
+          dispatch(storeUserDetails(res.body[0]))
+        }
+      })
+  }
+}
+
+export function changePage (route) {
+  return (dispatch) => {
+    push(route)
+  }
 }
