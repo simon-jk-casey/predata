@@ -45,10 +45,6 @@ export function toggleFetching () {
   return {type: types.TOGGLE_FETCHING}
 }
 
-export function toggleAuthenticating () {
-  return {type: types.TOGGLE_AUTHENTICATING}
-}
-
 export function toggleAuthenticated () {
   return {type: types.TOGGLE_AUTHENTICATED}
 }
@@ -66,11 +62,5 @@ export function getUserDetails () {
           dispatch(storeUserDetails(res.body[0]))
         }
       })
-  }
-}
-
-export function changePage (route) {
-  return (dispatch) => {
-    push(route)
   }
 }

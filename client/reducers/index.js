@@ -7,7 +7,7 @@ import predatorDataReducer from './predatorData'
 import deviceReducer from './devices'
 import { routerReducer } from 'react-router-redux'
 
-function universalReducer (state = {
+function globalReducer (state = {
   isAuthenticated: false,
   isFetching: false
 }, action) {
@@ -38,7 +38,7 @@ function universalReducer (state = {
 }
 
 const rootReducer = combineReducers({
-  universal: universalReducer,
+  global: globalReducer,
   user: userReducer,
   predator: predatorDataReducer,
   devices: deviceReducer,
