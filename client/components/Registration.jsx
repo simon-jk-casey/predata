@@ -27,14 +27,14 @@ class Registration extends React.Component {
     this.props.changePage()
   }
 
-  regFormField (fieldProps, props) {
+  regFormField (fieldProps, props, index) {
     const { inputChange } = props
     const { name, placeholder, type } = fieldProps
     return (
-      <span key={name}>
+      <div key={index}>
         <label htmlFor={name}>{placeholder}:</label>
         <input onChange={(evt) => inputChange(evt)} type={type} name={name} placeholder={placeholder} />
-      </span>
+      </div>
     )
   }
 
@@ -43,7 +43,7 @@ class Registration extends React.Component {
     return (
       <div>
         <form id='userRegistration' onSubmit={(evt) => this.handleSumbit(evt)}>
-          {fieldPropsArr.map(fieldProps => regFormField(fieldProps, props))}
+          {fieldPropsArr.map((fieldProps, index) => regFormField(fieldProps, props, index))}
         </form>
         <button form='userRegistration' type='submit'>SUBMIT</button>
         <button>CANCEL</button>

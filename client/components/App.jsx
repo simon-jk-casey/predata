@@ -8,6 +8,7 @@ import Registration from './Registration'
 import Profile from './Profile'
 import PredatorInput from './PredatorInput'
 import DeviceInput from './DeviceInput'
+import DeviceList from './DeviceList'
 import PredatorSelector from './PredatorSelector'
 import PredatorHistory from './PredatorHistory'
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/addPredator' component={PredatorInput} />
         <Route exact path='/addDevice' component={DeviceInput} />
+        <Route exact path='/myDevices' component={DeviceList} />
         <Route exact path='/history' component={PredatorHistory} />
       </main>
     </div>

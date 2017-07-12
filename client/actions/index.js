@@ -54,6 +54,7 @@ export function getUserDetails () {
     dispatch(toggleFetching())
     request
       .get(baseUrl + 'user')
+      .withCredentials()
       .end((err, res) => {
         if (err) {
           console.log(err)
@@ -63,4 +64,26 @@ export function getUserDetails () {
         }
       })
   }
+}
+
+export function getMyDevices () {
+  return (dispatch) => {
+    dispatch(toggleFetching())
+    request
+      .get(baseUrl + 'myDevices')
+      .withCredentials()
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log('devicedata', res.body)
+          dispatch(toggleFetching())
+          dispatch(storeDeviceData(res.body))
+        }
+      })
+  }
+}
+
+export function storeDeviceData (deviceData) {
+  return {type: types.STORE_DEVICE_DATA, payload: deviceData}
 }

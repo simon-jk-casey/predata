@@ -8,42 +8,39 @@ class Menu extends React.Component {
     console.log(props)
   }
 
+  menuButtons (cats, index) {
+    return (
+        <Link key={index} to={cats.route}>
+          <button>{cats.title}</button>
+        </Link>
+    )
+  }
+
   unauthMenu () {
+    const buttonCats = [
+      {route: '/register', title: 'Register'},
+      {route: '/test', title: 'About'},
+      {route: '/test', title: 'Contact'}
+    ]
     return (
       <div className='menuBar'>
-        <Link to='/register'>
-          <button className='menuButton'>REGISTER</button>
-        </Link>
-        <button className='menuButton'>ABOUT</button>
-        <button className='menuButton'>CONTACT</button>
-        <Link to='/history'>
-          <button className='menuButton'>TEST</button>
-        </Link>
+        {buttonCats.map((cats, index) => this.menuButtons(cats, index))}
       </div>
     )
   }
 
   authMenu () {
+    const buttonCats = [
+      {route: '/profile', title: 'Profile'},
+      {route: '/myDevices', title: 'My Devices'},
+      {route: '/addPredator', title: 'Capture Entry'},
+      {route: '/history', title: 'Capture History'},
+      {route: '/test', title: 'Data Views'},
+      {route: '/', title: 'Log Out'}
+    ]
     return (
       <div className='menuBar'>
-        <Link to='/profile'>
-          <button className='menuButton'>Profile</button>
-        </Link>
-        <Link to='/addDevice'>
-          <button className='menuButton'>My Devices</button>
-        </Link>
-        <Link to='/addPredator'>
-          <button className='menuButton'>Capture Entry</button>
-        </Link>
-        <Link to='/history'>
-          <button className='menuButton'>Capture History</button>
-        </Link>
-        <Link to='/test'>
-          <button className='menuButton'>Data Views</button>
-        </Link>
-        <Link to='/'>
-          <button className='menuButton'>Log Out</button>
-        </Link>
+        {buttonCats.map((cats, index) => this.menuButtons(cats, index))}
       </div>
     )
   }
