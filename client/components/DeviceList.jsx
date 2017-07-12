@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as actions from '../actions/index'
+import DeviceInput from './DeviceInput'
 
 class DeviceList extends React.Component {
   constructor (props) {
@@ -13,10 +14,18 @@ class DeviceList extends React.Component {
     this.props.dispatch(actions.getMyDevices())
   }
 
+  addDeviceHandler () {
+    document.getElementById('devInput').className = 'devEntry'
+    document.getElementById('showEntry').className = 'hidden'
+  }
+
   render () {
     return (
       <div>
-        <h1>devices will go here</h1>
+        <button id='showEntry' onClick={() => this.addDeviceHandler()}>Add Device</button>
+        <div id='devInput' className='hidden'>
+          <DeviceInput />
+        </div>
       </div>
     )
   }

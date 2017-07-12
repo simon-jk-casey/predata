@@ -3,13 +3,43 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions/index'
+import { addDevice } from '../api'
 
 class DeviceInput extends React.Component {
+
+  deviceSelector () {
+    const types = [
+      {value: 'null disabled', title: 'Select Device Type'},
+      {value: 'killTrap', title: 'Kill Trap'},
+      {value: 'captureTrap', title: 'Capture Trap'},
+      {value: 'poison', title: 'Poison'},
+      {value: 'chewCard', title: 'Chew Card'}
+    ]
+    return (
+      <select id='deviceType' defaultValue='null' onChange={(evt) => this.props.inputChange(evt)} name='deviceType'>
+        {types.map(type => <option value={type.value}>{type.title}</option>)}
+      </select>
+    )
+  }
+
+  handleSumbit(evt) {
+    evt.preventDefault()
+    addDevice(this.props.newDevice)
+    document.getElementById('devInput').className = 'hidden'
+    document.getElementById('showEntry').className = ''
+    this.props.changePage('/myDevices')
+  }
+
+  handleCancel(evt) {
+    document.getElementById('deviceEntry').reset()
+    this.props.changePage('/myDevices')
+  }
+
   render () {
     const { inputChange, changePage } = this.props
     return (
       <div>
-        <form id='deviceEntry'>
+        <form id='deviceEntry' onSubmit={(evt) => this.handleSumbit(evt)}>
           <div className='addDeviceRow'>
             <div>
               <label htmlFor='devName'><p>Device Name:</p></label>
@@ -23,13 +53,7 @@ class DeviceInput extends React.Component {
               <label htmlFor='devType'><p>Device Type:</p></label>
             </div>
             <div>
-              <select id='devType' defaultValue='null' onChange={(evt) => inputChange(evt)} name='deviceType'>
-                <option value='null disabled'>Select Device Type</option>
-                <option value='killTrap'>Kill Trap</option>
-                <option value='captureTrap'>Capture Trap</option>
-                <option value='poison'>Poison</option>
-                <option value='detectionDevice'>Detection Device</option>
-              </select>
+              {this.deviceSelector()}
             </div>
           </div>
           <div className='addDeviceRow'>
@@ -40,8 +64,8 @@ class DeviceInput extends React.Component {
           </div>
         </form>
         <div>
-          <button>SUBMIT</button>
-          <button>CANCEL</button>
+          <button form='deviceEntry' type='submit'>SUBMIT</button>
+          <button onClick={(evt) => this.handleCancel(evt)}>CANCEL</button>
         </div>
       </div>
     )
@@ -53,7 +77,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: () => push(''),
+  changePage: (route) => push(route),
   inputChange: (evt) => dispatch(actions.updateDeviceInput(evt.target.name, evt.target.value))
 }, dispatch)
 

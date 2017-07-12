@@ -7,6 +7,7 @@ import * as actions from './actions/index'
 const baseUrl = 'http://localhost:3000/api/v1/'
 
 // BUILD IN ERROR HANDLING
+// ALSO SUCCESS HANDLING ON SUBMITS
 
 export function registration (registrationData) {
   request
@@ -60,15 +61,15 @@ export function getMyDevices (callback) {
     })
 }
 
-export function addDevice (newDevice, callback) {
+export function addDevice (newDevice) {
   request
     .post(baseUrl + 'devices')
     .send(newDevice)
     .end((err, res) => {
       if (err) {
-        callback(err)
+        console.log(err)
       } else {
-        callback()
+        console.log(res)
       }
     })
 }
