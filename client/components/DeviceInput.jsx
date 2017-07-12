@@ -32,6 +32,8 @@ class DeviceInput extends React.Component {
 
   handleCancel(evt) {
     document.getElementById('deviceEntry').reset()
+    document.getElementById('devInput').className = 'hidden'
+    document.getElementById('showEntry').className = ''
     this.props.changePage('/myDevices')
   }
 
