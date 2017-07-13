@@ -1,11 +1,14 @@
 import React from 'react'
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions/index'
 import { addDevice } from '../api'
 
 class DeviceInput extends React.Component {
+  constructor (props) {
+    super(props)
+    console.log('inputprops', props)
+  }
 
   deviceSelector () {
     const types = [
@@ -17,28 +20,26 @@ class DeviceInput extends React.Component {
     ]
     return (
       <select id='deviceType' defaultValue='null' onChange={(evt) => this.props.inputChange(evt)} name='deviceType'>
-        {types.map(type => <option value={type.value}>{type.title}</option>)}
+        {types.map((type, index) => <option key={index} value={type.value}>{type.title}</option>)}
       </select>
     )
   }
 
-  handleSumbit(evt) {
+  handleSumbit (evt) {
     evt.preventDefault()
     addDevice(this.props.newDevice)
-    document.getElementById('devInput').className = 'hidden'
-    document.getElementById('showEntry').className = ''
-    this.props.changePage('/myDevices')
+    this.props.toggleAddDevice(false)
+    this.props.clearState('newDevice')
   }
 
-  handleCancel(evt) {
-    document.getElementById('deviceEntry').reset()
-    document.getElementById('devInput').className = 'hidden'
-    document.getElementById('showEntry').className = ''
-    this.props.changePage('/myDevices')
+  handleCancel (evt) {
+    evt.preventDefault()
+    this.props.toggleAddDevice(false)
+    this.props.clearState('newDevice')
   }
 
   render () {
-    const { inputChange, changePage } = this.props
+    const { inputChange } = this.props
     return (
       <div>
         <form id='deviceEntry' onSubmit={(evt) => this.handleSumbit(evt)}>
@@ -75,12 +76,16 @@ class DeviceInput extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { newDevice: state.devices.newDevice }
+  return {
+    newDevice: state.devices.newDevice,
+    showAddDevice: state.devices.showAddDevice
+  }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: (route) => push(route),
-  inputChange: (evt) => dispatch(actions.updateDeviceInput(evt.target.name, evt.target.value))
+  inputChange: (evt) => dispatch(actions.updateDeviceInput(evt.target.name, evt.target.value)),
+  toggleAddDevice: (bool) => dispatch(actions.toggleAddDevice(bool)),
+  clearState: (category) => dispatch(actions.clearState(category))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeviceInput)

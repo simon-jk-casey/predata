@@ -3,6 +3,7 @@ import clone from 'clone'
 import * as types from '../actions/actionTypes'
 
 export default function (state = {
+  showAddDevice: false,
   newDevice: {},
   myDevices: {}
 }, action) {
@@ -16,6 +17,12 @@ export default function (state = {
       return newState
     case types.STORE_DEVICE_DATA:
       newState.myDevices = payload
+      return newState
+    case types.TOGGLE_ADD_DEVICE:
+      newState.showAddDevice = payload
+      return newState
+    case types.CLEAR_STATE:
+      newState[payload] = {}
       return newState
     default:
       return newState

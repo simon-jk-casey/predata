@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import * as actions from '../actions/index'
 import DeviceInput from './DeviceInput'
@@ -10,29 +11,43 @@ class DeviceList extends React.Component {
     console.log('DeviceList props:', props)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.props.dispatch(actions.getMyDevices())
   }
 
-  addDeviceHandler () {
-    document.getElementById('devInput').className = 'devEntry'
-    document.getElementById('showEntry').className = 'hidden'
+  renderComponent () {
+    if (this.props.showAddDevice) {
+      return (
+        <div>
+          <div id='devInput'>
+            <DeviceInput />
+            <h2>device list here</h2>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <button id='showEntry' onClick={(evt) => this.props.dispatch(actions.toggleAddDevice(true))}>Add Device</button>
+          <div>
+            <h2>device list here</h2>
+          </div>
+        </div>
+      )
+    }
   }
-
   render () {
     return (
-      <div>
-        <button id='showEntry' onClick={() => this.addDeviceHandler()}>Add Device</button>
-        <div id='devInput' className='hidden'>
-          <DeviceInput />
-        </div>
-      </div>
+      this.renderComponent()
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { myDevices: state.devices.myDevices }
+  return {
+    myDevices: state.devices.myDevices,
+    showAddDevice: state.devices.showAddDevice
+  }
 }
 
 export default connect(mapStateToProps)(DeviceList)

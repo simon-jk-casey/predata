@@ -49,6 +49,14 @@ export function toggleAuthenticated () {
   return {type: types.TOGGLE_AUTHENTICATED}
 }
 
+export function toggleAddDevice (bool) {
+  return {type: types.TOGGLE_ADD_DEVICE, payload: bool}
+}
+
+export function clearState (category) {
+  return {type: types.CLEAR_STATE, payload: category}
+}
+
 export function getUserDetails () {
   return (dispatch) => {
     dispatch(toggleFetching())
