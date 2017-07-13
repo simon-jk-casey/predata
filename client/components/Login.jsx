@@ -20,6 +20,7 @@ class Login extends React.Component {
           console.log(err)
         } else {
           this.props.toggleAuthenticated()
+          this.props.clearState('loginDetails')
           this.props.changePage('/profile')
         }
       })
@@ -50,7 +51,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   changePage: (route) => push(route),
   inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value)),
   toggleAuthenticated: () => actions.toggleAuthenticated(),
-
+  clearState: (category) => actions.clearState(category)
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

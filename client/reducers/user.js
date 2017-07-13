@@ -23,6 +23,9 @@ export default function (state = {
     case types.STORE_USER_DETAILS:
       newState.profileData = payload
       return newState
+    case types.CLEAR_STATE:
+      newState[payload] = {}
+      return newState
     default:
       return newState
   }

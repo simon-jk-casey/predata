@@ -24,6 +24,7 @@ class Registration extends React.Component {
   handleSumbit (evt) {
     evt.preventDefault()
     registration(this.props.newUser)
+    this.props.clearState('newUser')
     this.props.changePage()
   }
 
@@ -58,7 +59,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   changePage: () => push('/'),
-  inputChange: (evt) => dispatch(actions.userRegistration(evt.target.name, evt.target.value))
+  inputChange: (evt) => dispatch(actions.userRegistration(evt.target.name, evt.target.value)),
+  clearState: (category) => dispatch(actions.clearState(category))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration)
