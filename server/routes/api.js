@@ -58,7 +58,6 @@ router.post('/v1/register', (req, res) => {
 router.post('/v1/auth', passport.authenticate('local'), (req, res) => {
   console.log('yup')
   res.sendStatus(200)
-  res.json({user: req.user})
 })
 
 router.get('/v1/user', ensureAuthenticated, (req, res) => {

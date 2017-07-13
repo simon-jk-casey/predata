@@ -5,7 +5,7 @@ import * as types from '../actions/actionTypes'
 export default function (state = {
   showAddDevice: false,
   newDevice: {},
-  myDevices: {}
+  myDevices: [{}]
 }, action) {
   let newState = clone(state)
   const { type, payload } = action

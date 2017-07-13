@@ -7,10 +7,10 @@ import Test from './Test'
 import Registration from './Registration'
 import Profile from './Profile'
 import PredatorInput from './PredatorInput'
-import DeviceInput from './DeviceInput'
-import DeviceList from './DeviceList'
+import MyDevices from './MyDevices'
 import PredatorSelector from './PredatorSelector'
 import PredatorHistory from './PredatorHistory'
+import DeviceList from './DeviceList'
 
 const App = () => {
   return (
@@ -22,12 +22,11 @@ const App = () => {
       </header>
       <main>
         <Route exact path='/' component={Login} />
-        <Route exact path='/test' component={Test} />
+        <Route exact path='/test' component={DeviceList} />
         <Route exact path='/register' component={Registration} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/addPredator' component={PredatorInput} />
-        <Route exact path='/addDevice' component={DeviceInput} />
-        <Route exact path='/myDevices' component={DeviceList} />
+        <Route exact path='/myDevices' component={MyDevices} />
         <Route exact path='/history' component={PredatorHistory} />
       </main>
     </div>
