@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import request from 'superagent'
 
-import { login } from '../api'
 import * as actions from '../actions/index'
 
 class Login extends React.Component {

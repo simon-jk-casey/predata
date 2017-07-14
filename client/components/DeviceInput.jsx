@@ -13,10 +13,10 @@ class DeviceInput extends React.Component {
   deviceSelector () {
     const types = [
       {value: 'null disabled', title: 'Select Device Type'},
-      {value: 'killTrap', title: 'Kill Trap'},
-      {value: 'captureTrap', title: 'Capture Trap'},
-      {value: 'poison', title: 'Poison'},
-      {value: 'chewCard', title: 'Chew Card'}
+      {value: 'Kill Trap', title: 'Kill Trap'},
+      {value: 'Capture Trap', title: 'Capture Trap'},
+      {value: 'Poison', title: 'Poison'},
+      {value: 'Chew Card', title: 'Chew Card'}
     ]
     return (
       <select id='deviceType' defaultValue='null' onChange={(evt) => this.props.inputChange(evt)} name='deviceType'>
@@ -35,7 +35,7 @@ class DeviceInput extends React.Component {
   handleCancel (evt) {
     evt.preventDefault()
     this.props.toggleAddDevice(false)
-    this.props.clearState('newDevice')
+    this.props.clearState('myDevices')
   }
 
   render () {
