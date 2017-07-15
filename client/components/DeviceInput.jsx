@@ -25,17 +25,21 @@ class DeviceInput extends React.Component {
     )
   }
 
+  resetDeviceForm () {
+    document.getElementById('deviceEntry').reset()
+    this.props.toggleAddDevice(false)
+    this.props.clearStateDevices('newDevice')
+  }
+
   handleSumbit (evt) {
     evt.preventDefault()
     addDevice(this.props.newDevice)
-    this.props.toggleAddDevice(false)
-    this.props.clearState('newDevice')
+    this.resetDeviceForm()
   }
 
   handleCancel (evt) {
     evt.preventDefault()
-    this.props.toggleAddDevice(false)
-    this.props.clearState('myDevices')
+    this.resetDeviceForm()
   }
 
   render () {

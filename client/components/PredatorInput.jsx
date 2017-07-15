@@ -25,9 +25,9 @@ class PredatorInput extends React.Component {
     )
   }
 
-  resetForm (formId, stateCat) {
-    document.getElementById(formId).resetForm
-    this.props.dispatch(actions.clearState(stateCat))
+  resetPredatorForm () {
+    document.getElementById('predatorEntry').reset()
+    this.props.dispatch(actions.clearStatePredator('newPredator'))
   }
 
   handleSubmit (evt) {
@@ -41,14 +41,15 @@ class PredatorInput extends React.Component {
         console.log(err)
       } else {
         console.log(res)
-        this.resetForm('predatorEntry', 'newPredator')
+        this.resetPredatorForm()
+
       }
     })
   }
 
   handleCancel (evt) {
     evt.preventDefault()
-    this.resetForm('predatorEntry', 'newPredator')
+    this.resetPredatorForm()
   }
 
   render () {

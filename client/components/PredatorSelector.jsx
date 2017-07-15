@@ -33,14 +33,13 @@ class PredatorSelector extends React.Component {
   }
 
   toggleSelection (evt) {
-    const selectClass = 'predatorSelected'
-    const unselectClass = 'predatorCell'
-    document.getElementById(evt.target.parentElement.id).className = unselectClass
-    if (this.props.selector.predatorSelected !== evt.target.parentElement.id) {
-      document.getElementById(evt.target.parentElement.id).className = unselectClass
-    }
+    const { prevPred } = this.props.selector
+    const selected = 'predatorSelected'
+    const unselected = 'predatorCell'
     this.props.toggleSelected(evt)
     this.props.inputChange(evt)
+    document.getElementById(evt.target.parentElement.id).className = selected
+    document.getElementById(prevPred).className = unselected
   }
 
   render () {

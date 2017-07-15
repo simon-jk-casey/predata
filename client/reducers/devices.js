@@ -21,7 +21,7 @@ export default function (state = {
     case types.TOGGLE_ADD_DEVICE:
       newState.showAddDevice = payload
       return newState
-    case types.CLEAR_STATE:
+    case types.CLEAR_STATE_DEVICES:
       payload === 'myDevices' ? newState[payload] = [] : newState[payload] = {}
       return newState
     default:

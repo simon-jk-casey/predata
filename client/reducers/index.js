@@ -23,11 +23,6 @@ function globalReducer (state = {
       return newState
     case types.TOGGLE_FETCHING:
       !newState.isFetching ? newState.isFetching = true : newState.isFetching = false
-      // if (!newState.isFetching) {
-      //   newState.isFetching = true
-      // } else {
-      //   newState.isFetching = false
-      // }
       return newState
     default:
       return newState

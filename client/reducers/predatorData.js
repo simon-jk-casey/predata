@@ -4,7 +4,6 @@ import * as types from '../actions/actionTypes'
 
 export default function (state = {
   newPredator: {},
-  predatorToggled: {},
   selector: {},
   history: []
 }, action) {
@@ -18,12 +17,11 @@ export default function (state = {
       return newState
     case types.TOGGLE_SELECTED:
       const selector = newState.selector
-      if (!selector.isToggled || selector.isToggled === null) {
-        selector.isToggled = true
-      } else {
-        selector.isToggled = false
-      }
+      selector.prevPred = selector.predatorSelected
       selector.predatorSelected = payload
+      return newState
+    case types.CLEAR_STATE_PREDATOR:
+      payload === 'history' ? newState[payload] = [] : newState[payload] = {}
       return newState
     default:
       return newState

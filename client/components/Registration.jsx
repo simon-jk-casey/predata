@@ -25,7 +25,7 @@ class Registration extends React.Component {
     evt.preventDefault()
     registration(this.props.newUser)
     this.props.clearState('newUser')
-    this.props.changePage()
+    this.props.changePage('/')
   }
 
   regFormField (fieldProps, props, index) {
@@ -58,9 +58,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: () => push('/'),
+  changePage: (route) => push(route),
   inputChange: (evt) => dispatch(actions.userRegistration(evt.target.name, evt.target.value)),
-  clearState: (category) => dispatch(actions.clearState(category))
+  clearState: (category) => dispatch(actions.clearStateUser(category))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration)

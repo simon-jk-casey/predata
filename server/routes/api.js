@@ -136,9 +136,9 @@ router.get('/v1/myDevices', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/v1/captureData', ensureAuthenticated, (req, res) => {
-  const { captureDevice, capturedPredator, predatorNotes } = req.body
+  const { deviceId, predCaptured, predNotes } = req.body
   const { userId } = req.user
-  const captureData = {userId, deviceId: captureDevice, capturedPredator, predatorNotes}
+  const captureData = {userId, deviceId, predCaptured, predNotes}
   db.addPredatorData(captureData)
   .then(() => {
     res.sendStatus(201)

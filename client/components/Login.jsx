@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   changePage: (route) => push(route),
   inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value)),
   toggleAuthenticated: () => actions.toggleAuthenticated(),
-  clearState: (category) => actions.clearState(category)
+  clearState: (category) => actions.clearStateUser(category)
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -53,8 +53,14 @@ export function toggleAddDevice (bool) {
   return {type: types.TOGGLE_ADD_DEVICE, payload: bool}
 }
 
-export function clearState (category) {
-  return {type: types.CLEAR_STATE, payload: category}
+export function clearStatePredator (category) {
+  return {type: types.CLEAR_STATE_PREDATOR, payload: category}
+}
+export function clearStateUser (category) {
+  return {type: types.CLEAR_STATE_USER, payload: category}
+}
+export function clearStateDevices (category) {
+  return {type: types.CLEAR_STATE_DEVICES, payload: category}
 }
 
 export function getUserDetails () {
