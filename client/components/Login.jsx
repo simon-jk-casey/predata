@@ -9,18 +9,23 @@ import * as actions from '../actions/index'
 class Login extends React.Component {
 
   handleSumbit (evt) {
+    const {
+      loginDetails,
+      toggleAuthenticated,
+      clearState,
+      changePage } = this.props
     evt.preventDefault()
     request
       .post('http://localhost:3000/api/v1/auth')
-      .send(this.props.loginDetails)
+      .send(loginDetails)
       .withCredentials()
       .end((err, res) => {
         if (err) {
           console.log(err)
         } else {
-          this.props.toggleAuthenticated()
-          this.props.clearState('loginDetails')
-          this.props.changePage('/profile')
+          toggleAuthenticated()
+          clearState('loginDetails')
+          changePage('/profile')
         }
       })
   }
