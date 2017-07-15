@@ -9,7 +9,8 @@ import { routerReducer } from 'react-router-redux'
 
 function globalReducer (state = {
   isAuthenticated: false,
-  isFetching: false
+  isFetching: false,
+  userTimezone: 'NZ'
 }, action) {
   let newState = clone(state)
   switch (action.type) {

@@ -63,6 +63,27 @@ export function clearStateDevices (category) {
   return {type: types.CLEAR_STATE_DEVICES, payload: category}
 }
 
+export function getCaptureHistory () {
+  return (dispatch) => {
+    dispatch(toggleFetching())
+    request
+    .get(baseUrl + 'myCaptureData')
+    .withCredentials()
+    .end((err, res) => {
+      if (err) {
+        console.log(err)
+      } else {
+        dispatch(toggleFetching())
+        dispatch(storeCaptureHistory(res.body))
+      }
+    })
+  }
+}
+
+export function storeCaptureHistory (captureHistory) {
+  return {type: types.STORE_CAPTURE_HISTORY, payload: captureHistory}
+}
+
 export function getUserDetails () {
   return (dispatch) => {
     dispatch(toggleFetching())

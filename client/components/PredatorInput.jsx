@@ -33,9 +33,10 @@ class PredatorInput extends React.Component {
 
   handleSubmit (evt) {
     evt.preventDefault()
+    console.log('submit', this.props.newPredator)
     request
     .post('http://localhost:3000/api/v1/captureData')
-    .send(this.props.newPredator)
+    .send(this.props.predator)
     .withCredentials()
     .end((err, res) => {
       if (err) {

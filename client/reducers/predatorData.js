@@ -13,7 +13,6 @@ export default function (state = {
     case types.UPDATE_PREDATOR_INPUT:
       const newPredator = newState.newPredator
       newPredator[payload.field] = payload.value
-      console.log('PE', newPredator)
       return newState
     case types.TOGGLE_SELECTED:
       const selector = newState.selector
@@ -22,6 +21,10 @@ export default function (state = {
       return newState
     case types.CLEAR_STATE_PREDATOR:
       payload === 'history' ? newState[payload] = [] : newState[payload] = {}
+      return newState
+    case types.STORE_CAPTURE_HISTORY:
+      newState.history = payload
+      console.log('stored captures', newState.history)
       return newState
     default:
       return newState

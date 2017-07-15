@@ -83,6 +83,7 @@ function getUserCaptureData (userId) {
     .select('deviceType')
     .select('deviceNotes')
     .where('predatorData.userId', `${userId}`)
+    .orderBy('captureDate', 'desc')
 }
 
 // add functions later for search -- by suburb, date range, trap type

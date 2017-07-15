@@ -136,6 +136,7 @@ router.get('/v1/myDevices', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/v1/captureData', ensureAuthenticated, (req, res) => {
+  console.log(req.body)
   const { deviceId, predCaptured, predNotes } = req.body
   const { userId } = req.user
   const captureData = {userId, deviceId, predCaptured, predNotes}
