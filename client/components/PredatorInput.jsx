@@ -28,6 +28,7 @@ class PredatorInput extends React.Component {
   resetPredatorForm () {
     document.getElementById('predatorEntry').reset()
     this.props.dispatch(actions.clearStatePredator('newPredator'))
+    this.props.dispatch(actions.clearStatePredator('selector'))
   }
 
   handleSubmit (evt) {
@@ -90,7 +91,7 @@ class PredatorInput extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    newPredator: state.predator.newPredator,
+    predator: state.predator.newPredator,
     myDevices: state.devices.myDevices
   }
 }
