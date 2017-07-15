@@ -4,11 +4,6 @@ import { connect } from 'react-redux'
 import * as actions from '../actions/index'
 
 class DeviceList extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log('Device List props', props)
-    this.deviceData = this.props.myDevices
-  }
 
   componentWillMount () {
     this.props.dispatch(actions.getMyDevices())
@@ -41,7 +36,10 @@ class DeviceList extends React.Component {
     } else {
       return (
         <div>
-          {this.props.myDevices.map((device, index) => this.deviceCell(device, index))}
+          {
+            this.props.myDevices.map((device, index) =>
+              this.deviceCell(device, index))
+          }
         </div>
       )
     }
