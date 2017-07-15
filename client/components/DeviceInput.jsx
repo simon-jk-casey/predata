@@ -5,10 +5,6 @@ import * as actions from '../actions/index'
 import { addDevice } from '../api'
 
 class DeviceInput extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log('inputprops', props)
-  }
 
   deviceSelector () {
     const types = [
@@ -19,8 +15,16 @@ class DeviceInput extends React.Component {
       {value: 'Chew Card', title: 'Chew Card'}
     ]
     return (
-      <select id='deviceType' defaultValue='null' onChange={(evt) => this.props.inputChange(evt)} name='deviceType'>
-        {types.map((type, index) => <option key={index} value={type.value}>{type.title}</option>)}
+      <select
+        id='deviceType'
+        defaultValue='null'
+        onChange={(evt) => this.props.inputChange(evt)}
+        name='deviceType'>
+        {
+          types.map((type, index) =>
+            <option key={index} value={type.value}>{type.title}</option>
+          )
+        }
       </select>
     )
   }
@@ -52,7 +56,11 @@ class DeviceInput extends React.Component {
               <label htmlFor='devName'><p>Device Name:</p></label>
             </div>
             <div>
-              <input id='devName' type='text' onChange={(evt) => inputChange(evt)} name='deviceName' />
+              <input
+                id='devName'
+                type='text'
+                onChange={(evt) => inputChange(evt)}
+                name='deviceName' />
             </div>
           </div>
           <div className='addDeviceRow'>
@@ -67,7 +75,14 @@ class DeviceInput extends React.Component {
             <label htmlFor='devNotes'><p>Device Notes:</p></label>
           </div>
           <div>
-            <textarea id='devNotes' name='deviceNotes' onChange={(evt) => inputChange(evt)} rows='6' cols='60' wrap='soft' maxLength='240' />
+            <textarea
+              id='devNotes'
+              name='deviceNotes'
+              onChange={(evt) => inputChange(evt)}
+              rows='6'
+              cols='60'
+              wrap='soft'
+              maxLength='240' />
           </div>
         </form>
         <div>
@@ -87,9 +102,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  inputChange: (evt) => dispatch(actions.updateDeviceInput(evt.target.name, evt.target.value)),
-  toggleAddDevice: (bool) => dispatch(actions.toggleAddDevice(bool)),
-  clearState: (category) => dispatch(actions.clearState(category))
+  inputChange: (evt) =>
+    dispatch(actions.updateDeviceInput(evt.target.name, evt.target.value)),
+  toggleAddDevice: (bool) =>
+    dispatch(actions.toggleAddDevice(bool)),
+  clearState: (category) =>
+    dispatch(actions.clearState(category))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeviceInput)
