@@ -31,13 +31,20 @@ class Login extends React.Component {
   }
 
   render () {
+    const { inputChange } = this.props
     return (
       <div>
         <form id='userAuth' onSubmit={(evt) => this.handleSumbit(evt)}>
           <label htmlFor='email'>Email Address: </label>
-          <input type='text' name='email' onChange={(evt) => this.props.inputChange(evt)} />
+          <input
+            type='text'
+            name='email'
+            onChange={(evt) => inputChange(evt)} />
           <label htmlFor='password'>Password: </label>
-          <input type='password' name='password' onChange={(evt) => this.props.inputChange(evt)} />
+          <input
+            type='password'
+            name='password'
+            onChange={(evt) => inputChange(evt)} />
         </form>
         <button form='userAuth' type='submit'>Login</button>
       </div>
@@ -52,10 +59,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: (route) => push(route),
-  inputChange: (evt) => dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value)),
-  toggleAuthenticated: () => actions.toggleAuthenticated(),
-  clearState: (category) => actions.clearStateUser(category)
+  changePage: (route) =>
+    push(route),
+  inputChange: (evt) =>
+    dispatch(actions.updateLoginDetails(evt.target.name, evt.target.value)),
+  toggleAuthenticated: () =>
+    actions.toggleAuthenticated(),
+  clearState: (category) =>
+    actions.clearStateUser(category)
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
