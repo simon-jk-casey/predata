@@ -73,11 +73,11 @@ class PredatorHistory extends React.Component {
     return dateStr
   }
 
-  historyCell (histItem) {
+  historyCell (histItem, index) {
     console.log(histItem)
     const { captureId, captureDate, predCaptured, predNotes, deviceName, deviceType } = histItem
     return (
-      <div key={captureId} className='historyCell'>
+      <div key={index} className='historyCell'>
         <div className='histImg'>
           <img src={this.imagePicker(predCaptured)} />
         </div>
@@ -102,7 +102,7 @@ class PredatorHistory extends React.Component {
     return (
       <div>
         <h2>Predator Capture History</h2>
-        {this.props.history.map(historyItem => this.historyCell(historyItem))}
+        {this.props.history.map((historyItem, index) => this.historyCell(historyItem, index))}
       </div>
     )
   }
