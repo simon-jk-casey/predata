@@ -1,3 +1,4 @@
+// TO DO - HANDLE SUBMIT ERR
 import React from 'react'
 import { connect } from 'react-redux'
 import request from 'superagent'
@@ -7,10 +8,6 @@ import * as actions from '../actions/index'
 import PredatorSelector from './PredatorSelector'
 
 class PredatorInput extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log('predInput props', props)
-  }
 
   componentWillMount () {
     this.props.dispatch(actions.getMyDevices())
@@ -33,7 +30,6 @@ class PredatorInput extends React.Component {
 
   handleSubmit (evt) {
     evt.preventDefault()
-    console.log('submit', this.props.newPredator)
     request
     .post('http://localhost:3000/api/v1/captureData')
     .send(this.props.predator)
@@ -44,7 +40,6 @@ class PredatorInput extends React.Component {
       } else {
         console.log(res)
         this.resetPredatorForm()
-
       }
     })
   }
@@ -62,13 +57,17 @@ class PredatorInput extends React.Component {
           <div className='deviceSelector'>
             <select
               id='deviceSelect'
-              onChange={(evt) => this.props.dispatch(updatePredatorInput('deviceId', evt.target.value))}
+              onChange={
+                (evt) => this.props.dispatch(updatePredatorInput('deviceId', evt.target.value))
+              }
               defaultValue='null'>
               <option value='null disabled'>Select Device</option>
-              {this.props.myDevices.map((device, index) => this.selectorOptions(device, index))}
+              {
+                this.props.myDevices.map((device, index) =>
+                  this.selectorOptions(device, index))
+              }
             </select>
           </div>
-          <div className='errorField'><p id='errorMsg'></p></div>
           <PredatorSelector />
           <div>
             <textarea

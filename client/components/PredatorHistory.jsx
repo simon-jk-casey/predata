@@ -99,7 +99,8 @@ class PredatorHistory extends React.Component {
       <div>
         <h2>Predator Capture History</h2>
         {
-          this.props.history.map((historyItem, index) => this.historyCell(historyItem, index))
+          this.props.history.map((historyItem, index) =>
+            this.historyCell(historyItem, index))
         }
       </div>
     )
