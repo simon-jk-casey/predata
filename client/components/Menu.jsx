@@ -3,16 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 class Menu extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log(props)
-  }
 
   menuButtons (cats, index) {
     return (
-        <Link key={index} to={cats.route}>
-          <button>{cats.title}</button>
-        </Link>
+      <Link key={index} to={cats.route}>
+        <button>{cats.title}</button>
+      </Link>
     )
   }
 
