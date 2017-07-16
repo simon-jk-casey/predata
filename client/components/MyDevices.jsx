@@ -7,10 +7,6 @@ import DeviceInput from './DeviceInput'
 import DeviceList from './DeviceList'
 
 class MyDevices extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log('My Devices props:', props)
-  }
 
   renderComponent () {
     if (this.props.showAddDevice) {
@@ -25,7 +21,11 @@ class MyDevices extends React.Component {
     } else {
       return (
         <div>
-          <button id='showEntry' onClick={(evt) => this.props.dispatch(actions.toggleAddDevice(true))}>Add Device</button>
+          <button
+            id='showEntry'
+            onClick={(evt) => this.props.dispatch(actions.toggleAddDevice(true))}>
+            Add Device
+          </button>
           <div>
             <DeviceList />
           </div>
