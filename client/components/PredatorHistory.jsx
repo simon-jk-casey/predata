@@ -1,13 +1,10 @@
 import React from 'react'
-import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions/index'
 
 class PredatorHistory extends React.Component {
   constructor (props) {
     super(props)
-    console.log('history props', props)
     this.predators = [
       {name: 'Norway Rat', imgsrc: '../../img/norwayRat.jpg'},
       {name: 'Ship Rat', imgsrc: '../../img/shipRat.jpg'},
@@ -34,7 +31,6 @@ class PredatorHistory extends React.Component {
 
   correctDate (date) {
     const dateTimeArr = date.split(' ')
-    const timeArr = dateTimeArr[1].split(':')
     const dateArr = dateTimeArr[0].split('-')
     const day = dateArr[2]
     const monthVal = parseInt(dateArr[1])
@@ -75,7 +71,7 @@ class PredatorHistory extends React.Component {
 
   historyCell (histItem, index) {
     console.log(histItem)
-    const { captureId, captureDate, predCaptured, predNotes, deviceName, deviceType } = histItem
+    const { captureDate, predCaptured, predNotes, deviceName, deviceType } = histItem
     return (
       <div key={index} className='historyCell'>
         <div className='histImg'>
@@ -102,7 +98,9 @@ class PredatorHistory extends React.Component {
     return (
       <div>
         <h2>Predator Capture History</h2>
-        {this.props.history.map((historyItem, index) => this.historyCell(historyItem, index))}
+        {
+          this.props.history.map((historyItem, index) => this.historyCell(historyItem, index))
+        }
       </div>
     )
   }
