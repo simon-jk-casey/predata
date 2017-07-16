@@ -22,10 +22,11 @@ class Registration extends React.Component {
   }
 
   handleSumbit (evt) {
+    const { clearState, changePage } = this.props
     evt.preventDefault()
     registration(this.props.newUser)
-    this.props.clearState('newUser')
-    this.props.changePage('/')
+    clearState('newUser')
+    changePage('/')
   }
 
   regFormField (fieldProps, props, index) {
@@ -34,7 +35,11 @@ class Registration extends React.Component {
     return (
       <div key={index}>
         <label htmlFor={name}>{placeholder}:</label>
-        <input onChange={(evt) => inputChange(evt)} type={type} name={name} placeholder={placeholder} />
+        <input
+          onChange={(evt) => inputChange(evt)}
+          type={type}
+          name={name}
+          placeholder={placeholder} />
       </div>
     )
   }
@@ -43,8 +48,13 @@ class Registration extends React.Component {
     const { regFormField, fieldPropsArr, props } = this
     return (
       <div>
-        <form id='userRegistration' onSubmit={(evt) => this.handleSumbit(evt)}>
-          {fieldPropsArr.map((fieldProps, index) => regFormField(fieldProps, props, index))}
+        <form
+          id='userRegistration'
+          onSubmit={(evt) => this.handleSumbit(evt)}>
+          {
+            fieldPropsArr.map((fieldProps, index) =>
+              regFormField(fieldProps, props, index))
+          }
         </form>
         <button form='userRegistration' type='submit'>SUBMIT</button>
         <button>CANCEL</button>
@@ -58,9 +68,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  changePage: (route) => push(route),
-  inputChange: (evt) => dispatch(actions.userRegistration(evt.target.name, evt.target.value)),
-  clearState: (category) => dispatch(actions.clearStateUser(category))
+  changePage: (route) =>
+    push(route),
+  inputChange: (evt) =>
+    dispatch(actions.userRegistration(evt.target.name, evt.target.value)),
+  clearState: (category) =>
+    dispatch(actions.clearStateUser(category))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration)
