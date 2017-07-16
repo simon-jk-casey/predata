@@ -1,13 +1,13 @@
 import request from 'superagent'
 
-import { push } from 'react-router-redux'
-
 import * as actions from './actions/index'
 
 const baseUrl = 'http://localhost:3000/api/v1/'
 
 // BUILD IN ERROR HANDLING
 // ALSO SUCCESS HANDLING ON SUBMITS
+
+// THIS FILE IS SLIGHTLY REDUNDANT, MOVE OUT TO ACTIONS - MAYBE FUNCTION FOR SUPERAGENT CALL HERE THAT EXPORTS TO ACTIONS ETC
 
 export function registration (registrationData) {
   request
@@ -21,21 +21,6 @@ export function registration (registrationData) {
       }
     })
 }
-
-// using in component
-// export function login (loginData) {
-//   request
-//     .post(baseUrl + 'auth')
-//     .send(loginData)
-//     .withCredentials()
-//     .end((err, res) => {
-//       if (res.status === 200) {
-//         actions.toggleAuthenticated()
-//       } else {
-//         console.log(err)
-//       }
-//     })
-// }
 
 export function getUser (callback) {
   request
