@@ -1,22 +1,22 @@
 import React from 'react'
-import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../actions/index'
 
 class Profile extends React.Component {
-  constructor (props) {
-    super(props)
-    console.log('Profile!', this.props.profileData)
-    console.log('props', props)
-  }
 
   componentDidMount () {
     this.props.dispatch(actions.getUserDetails())
   }
 
   render () {
-    const { firstName, lastName, streetAddress, suburb, city, gpsCoords, email } = this.props.profileData
+    const {
+      firstName,
+      lastName,
+      streetAddress,
+      suburb,
+      city,
+      gpsCoords,
+      email } = this.props.profileData
     return (
       <div>
         <div><h3>Welcome back {firstName}!</h3></div>
@@ -53,5 +53,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Profile)
-
-// THIS CAN BE REFACTORED METHINKS TO ONE LINE AND SET THE STUFF IN IT AS CLASS PROPERTIES ie <ProfileSection header='dfjskdfs' data={sdfsfd} />
