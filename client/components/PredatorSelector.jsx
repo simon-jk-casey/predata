@@ -1,8 +1,6 @@
 import React from 'react'
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import request from 'superagent'
 
 import * as actions from '../actions/index'
 
@@ -25,7 +23,11 @@ class PredatorSelector extends React.Component {
   predatorCell (predator) {
     const { name, imgsrc } = predator
     return (
-      <div key={name} id={name} className='predCell' onClick={(evt) => this.toggleSelection(evt)}>
+      <div
+        key={name}
+        id={name}
+        className='predCell'
+        onClick={(evt) => this.toggleSelection(evt)}>
         <img className='predImg' src={imgsrc} />
         <p>{name}</p>
       </div>
@@ -33,18 +35,19 @@ class PredatorSelector extends React.Component {
   }
 
   toggleSelection (evt) {
-    console.log('test', this.props.selector.prevPred)
-    const { prevPred, predatorSelected } = this.props.selector
+    const { parentElement } = evt.target
+    const { prevPred } = this.props.selector
+    const { toggleSelected, inputChange } = this.props
     const selected = 'predSelected'
     const unselected = 'predCell'
     if (prevPred !== undefined) {
-      document.getElementById(evt.target.parentElement.id).className = selected
+      document.getElementById(parentElement.id).className = selected
       document.getElementById(prevPred).className = unselected
     } else {
-      document.getElementById(evt.target.parentElement.id).className = selected
+      document.getElementById(parentElement.id).className = selected
     }
-    this.props.toggleSelected(evt)
-    this.props.inputChange(evt)
+    toggleSelected(evt)
+    inputChange(evt)
   }
 
   render () {
@@ -64,8 +67,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  inputChange: (evt) => dispatch(actions.updatePredatorInput('predCaptured', evt.target.parentElement.id)),
-  toggleSelected: (evt) => dispatch(actions.toggleSelected(evt.target.parentElement.id))
+  inputChange: (evt) =>
+  dispatch(actions.updatePredatorInput('predCaptured', evt.target.parentElement.id)),
+  toggleSelected: (evt) =>
+  dispatch(actions.toggleSelected(evt.target.parentElement.id))
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PredatorSelector)
