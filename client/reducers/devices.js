@@ -13,7 +13,6 @@ export default function (state = {
     case types.UPDATE_DEVICE_INPUT:
       const newDevice = newState.newDevice
       newDevice[payload.field] = payload.value
-      console.log('deviceinput', newDevice)
       return newState
     case types.STORE_DEVICE_DATA:
       newState.myDevices = payload

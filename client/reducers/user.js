@@ -13,12 +13,10 @@ export default function (state = {
     case types.USER_REGISTRATION:
       const newUser = newState.newUser
       newUser[payload.field] = payload.value
-      console.log(newUser)
       return newState
     case types.UPDATE_LOGIN_DETAILS:
       const loginDetails = newState.loginDetails
       loginDetails[payload.field] = payload.value
-      console.log(loginDetails)
       return newState
     case types.STORE_USER_DETAILS:
       newState.profileData = payload

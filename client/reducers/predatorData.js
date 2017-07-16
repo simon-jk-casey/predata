@@ -24,7 +24,6 @@ export default function (state = {
       return newState
     case types.STORE_CAPTURE_HISTORY:
       newState.history = payload
-      console.log('stored captures', newState.history)
       return newState
     default:
       return newState
